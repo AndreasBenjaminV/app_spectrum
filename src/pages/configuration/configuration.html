@@ -26,9 +26,10 @@
               </ion-item>
             </ion-col>
             <ion-col col-4>
-              <ion-item>
-                <p>4</p><p>20</p>
-              </ion-item>
+              <ion-item *ngFor="let item of timerListRef$ | async">
+                  <h2>On: {{item.itemHourOn}}</h2>
+                  <h3>Off: {{item.itemHourOn}}</h3>
+                </ion-item>
             </ion-col>
           </ion-row>
         </ion-grid>

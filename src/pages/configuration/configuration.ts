@@ -18,9 +18,13 @@ export class ConfigurationPage {
   ledItem = {} as LedItem
   ledItemRef$: FirebaseListObservable<LedItem[]>
 
+  timerListRef$: FirebaseListObservable<TimerItem[]>
+
   constructor(public navCtrl: NavController,private database: AngularFireDatabase) {
     this.ledItemRef$ = this.database.list('led-list');
     this.timerItemRef$ = this.database.list('timer-list');
+    this.timerListRef$ = this.database.list('timer-list');
+ 
   }
 
   
