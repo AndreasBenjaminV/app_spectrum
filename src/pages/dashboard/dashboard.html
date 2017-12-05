@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Dashboard
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <div id="container" style="display: block;"></div>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <div id="container2" style="display: block;"></div>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <div id="container3" style="display: block;"></div>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <div id="container4" style="display: block;"></div>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    
+    <form id="home-form5">
+        <ion-row>
+            <ion-item id="home-radio8">
+                <ion-label>Temperatura</ion-label>
+                <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month" name="Temperatura"></ion-datetime>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item id="home-radio8">
+                <ion-label>Humedad</ion-label>
+                <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month" name="Temperatura2"></ion-datetime>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item id="home-radio8">
+                <ion-label>Humedad tierra</ion-label>
+                <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month" name="Temperatura"></ion-datetime>
+            </ion-item>
+        </ion-row>
+    </form>
+</ion-content>
