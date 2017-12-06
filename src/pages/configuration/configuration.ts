@@ -39,7 +39,7 @@ export class ConfigurationPage {
   addTimerItem(timerItem: TimerItem){
      
 
-    this.timerItemRef$.push({
+    this.timerItemRef$.update('-L-hpF3hjii_VlVMazZ1',{
       itemHourOn: Number(this.timerItem.itemHourOn),
       itemHourOff: Number(24 - this.timerItem.itemHourOn)
     });

@@ -25,9 +25,9 @@
           <button ion-button block (click)="addTimerItem(timerItem)">Set</button>
       </ion-col>
       <ion-col col-4>
-        <ion-item *ngFor="let item of timerListRef$ | async">
-          <h2>On: {{item.itemHourOn}}</h2>
-          <h3>Off: {{item.itemHourOn}}</h3>
+        <ion-item>
+          <h3 id=bloque1>On: {{timerItem.itemHourOn}}</h3>
+          <h3 id=bloque2>Off: {{24-timerItem.itemHourOn}}</h3>
         </ion-item>
       </ion-col>
     </ion-row>
