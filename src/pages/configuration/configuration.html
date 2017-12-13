@@ -7,12 +7,9 @@
 </ion-header>
 
 <ion-content>
-
-<video poster="">
-  
-
-</video>
-
+    <video id="myVideo">
+        <source src="ink_water.mp4" type="video/mp4">
+    </video>
   <h3 id="home-heading5" style="color:#FFFFFF;text-align:center;">
     Timer
   </h3>
@@ -29,14 +26,12 @@
           <button ion-button block (click)="editTimerItem(timerItem)">Set</button>
       </ion-col>
       <ion-col col-4>
-<<<<<<< HEAD
         <ion-item *ngFor="let item of timerListRef$ | async">
           <h3>On: {{timerItem.itemHourOn}}</h3>
-=======
+        </ion-item>
         <ion-item>
           <h3 id=bloque1>On: {{timerItem.itemHourOn}}</h3>
           <h3 id=bloque2>Off: {{24-timerItem.itemHourOn}}</h3>
->>>>>>> c4c94c9a87d2deb7d7fde5f9d84a98d856919896
         </ion-item>
         <ion-item *ngFor="let item of timerListRef$ | async">
             <h3>Off: {{24-timerItem.itemHourOn}}</h3>
@@ -160,7 +155,7 @@
               <ion-label>
                 Encendido
               </ion-label>
-              <ion-toggle color="dark" checked="true "></ion-toggle>
+              <ion-toggle color="dark" checked="False" (ionChange)="editModeYellow($event)"></ion-toggle>
             </ion-item>
           </form>
         </ion-col>
@@ -173,7 +168,7 @@
               <ion-label>
                 Encendido
               </ion-label>
-              <ion-toggle color="dark" checked="false" (ionChange)="editModeUv(ledItemUv)"></ion-toggle>
+              <ion-toggle color="dark" checked="False" (ionChange)="editModeUv($event)"></ion-toggle>
             </ion-item>
           </form>
         </ion-col>
@@ -186,7 +181,7 @@
               <ion-label>
                 Encendido
               </ion-label>
-              <ion-toggle color="dark" checked="true"></ion-toggle>
+              <ion-toggle color="dark" checked="False" (ionChange)="editModeIr($event)"></ion-toggle>
             </ion-item>
           </form>
         </ion-col>

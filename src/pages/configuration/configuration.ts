@@ -7,6 +7,7 @@ import { ModeItem } from '../../models/mode-item/mode-item.interface';
 import { LedItemBlue } from '../../models/led-item-Blue/led-item-Blue.interface';
 import { LedItemWW } from '../../models/led-item-ww/led-item-ww.interface';
 import { LedItemRed } from '../../models/led-item-red/led-item-red.interface';
+import { LedItemYellow } from '../../models/led-item-Yellow/led-item-Yellow.interface';
 import { LedItemUv } from '../../models/led-item-uv/led-item-uv.interface';
 import { LedItemIr } from '../../models/led-item-ir/led-item-ir.interface';
 import { FanItem } from '../../models/fan-item/fan-item.interface';
@@ -48,6 +49,9 @@ export class ConfigurationPage {
 
   PowerRef$: FirebaseListObservable<ModeItem[]>
   StateItemRef$: FirebaseListObservable<StateItem[]>
+
+  ledItemYellow$: FirebaseListObservable<ModeItem[]>
+  ledItemYellowRef$: FirebaseListObservable<StateItem[]>
 
 
   constructor(public navCtrl: NavController, private database: AngularFireDatabase) {
@@ -166,7 +170,6 @@ export class ConfigurationPage {
   }
 
   editModeBlue(ledItemBlue: LedItemBlue) {
-    var number = this.ledItemBlueRef$;
     if (this.ledItemBlue.itemNumber == 0) {
       this.ledItemBlueRef$.update('e1', {
         17: 0,
@@ -174,7 +177,6 @@ export class ConfigurationPage {
         22: 0,
         5: 0,
       })
-      console.log(this.ledItemBlue.itemNumber)
     }
     else if (this.ledItemBlue.itemNumber == 1) {
       this.ledItemBlueRef$.update('e1', {
@@ -183,7 +185,6 @@ export class ConfigurationPage {
         22: 0,
         5: 0,
       })
-      console.log(this.ledItemBlue.itemNumber)
     }
     else if (this.ledItemBlue.itemNumber == 2) {
       this.ledItemBlueRef$.update('e1', {
@@ -192,7 +193,6 @@ export class ConfigurationPage {
         22: 0,
         5: 0,
       })
-      console.log(this.ledItemBlue.itemNumber)
     }
     else if (this.ledItemBlue.itemNumber == 3) {
       this.ledItemBlueRef$.update('e1', {
@@ -201,7 +201,6 @@ export class ConfigurationPage {
         22: 1,
         5: 0,
       })
-      console.log(this.ledItemBlue.itemNumber)
     }
     else if (this.ledItemBlue.itemNumber == 4) {
       this.ledItemBlueRef$.update('e1', {
@@ -210,7 +209,6 @@ export class ConfigurationPage {
         22: 1,
         5: 1,
       })
-      console.log(this.ledItemBlue.itemNumber)
     }
     this.StateItemRef$.update('state-table', {
       e1: 1
@@ -245,26 +243,47 @@ export class ConfigurationPage {
     })
   }
 
-  editModeIr(ledItemIr: LedItemIr) {
-    if (this.ledItemIr.itemNumber == 0) {
+  editModeYellow(event){
+    console.log(event.checked);
+    if (event.checked == false) {
+      this.ledItemBlueRef$.update('e1', {
+        17: 0,
+        27: 0,    
+        22: 0,
+        5: 0,
+      })
+    }
+    else if (event.checked == true) {
+      this.ledItemBlueRef$.update('e1', {
+        17: 0,
+        27: 0,
+        22: 0,
+        5: 1,
+      })
+    }
+    }
+
+
+  editModeIr(event) {
+    if (event.checked == false) {
       this.ledItemIrRef$.update('e3', {
         6: 0,
       })
     }
-    else if (this.ledItemIr.itemNumber == 0) {
+    else if (event.checked == true) {
       this.ledItemIrRef$.update('e3', {
         6: 1,
       })
     }
   }
 
-  editModeUv(ledItemUv: LedItemUv) {
-    if (this.ledItemUv.itemNumber == true) {
+  editModeUv(event) {
+    if (event.checked == true) {
       this.ledItemUvRef$.update('e4', {
         13: 0,
       })
     }
-    else if (this.ledItemUv.itemNumber == false) {
+    else if (event.checked == false) {
       this.ledItemUvRef$.update('e4', {
         13: 1,
       })
@@ -274,73 +293,53 @@ export class ConfigurationPage {
     })
   }
 
-  editModeBloom(LedItemRed: LedItemRed) {
-    this.ledItemBlueRef$.update('1', {
-      17: 1,
-      27: 1,
-      22: 1,
-      5: 1,
-    })
-    this.ledItemRedRef$.update('0', {
-      18: 1,
-      23: 1,
-      24: 1,
-      25: 1,
-      12: 1,
-      16: 1,
-    })
-    this.ledItemWWRef$.update('2', {
-      20: 1,
-      21: 1,
-    })
-    this.StateItemRef$.update('state-table', {
-      0: 1,
-      1: 1,
-      2: 1,
-      3: 0,
-      4: 0,
-      5: 0,
-    })
 
-  }
 
   // ------------------ static - modes-----------------------------------
 
   editModeClone(modeItem: ModeItem) {
     // log the result out to the console
-    this.modeListRef$.update('actual_mode', {
-      mode: 'clone',
-      Relays_blue: 2,
-      Relays_red: 0,
-      Relays_ww: 1
-    });
-  }
-
-  editModeVegeta(LedItemBlue: LedItemBlue) {
-    this.ledItemBlueRef$.update('1', {
+    this.ledItemBlueRef$.update('e1', {
       17: 1,
       27: 1,
       22: 0,
       5: 0,
     })
     this.StateItemRef$.update('state-table', {
-      0: 0,
-      1: 1,
-      2: 0,
-      3: 0,
-      4: 0,
+      e0: 0,
+      e1: 1,
+      e2: 0,
+      e3: 0,
+      e4: 0,
+      e5: 0,
+    })
+  }
+
+  editModeVegeta(LedItemBlue: LedItemBlue) {
+    this.ledItemBlueRef$.update('e1', {
+      17: 1,
+      27: 1,
+      22: 1,
       5: 0,
+    })
+    this.StateItemRef$.update('state-table', {
+      e0: 0,
+      e1: 1,
+      e2: 0,
+      e3: 0,
+      e4: 0,
+      e5: 0,
     })
   }
 
   editModeFlowering() {
-    this.ledItemBlueRef$.update('1', {
+    this.ledItemBlueRef$.update('e1', {
       17: 0,
       27: 0,
       22: 1,
       5: 1,
     })
-    this.ledItemRedRef$.update('0', {
+    this.ledItemRedRef$.update('e0', {
       18: 1,
       23: 1,
       24: 1,
@@ -349,14 +348,47 @@ export class ConfigurationPage {
       16: 1,
     })
     this.StateItemRef$.update('state-table', {
-      0: 1,
-      1: 1,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
+      e0: 1,
+      e1: 1,
+      e2: 0,
+      e3: 0,
+      e4: 0,
+      e5: 0,
     })
   }
+  
+  editModeBloom(LedItemRed: LedItemRed) {
+    this.ledItemBlueRef$.update('e1', {
+      17: 1,
+      27: 1,
+      22: 1,
+      5: 1,
+    })
+    this.ledItemRedRef$.update('e0', {
+      18: 1,
+      23: 1,
+      24: 1,
+      25: 1,
+      12: 1,
+      16: 1,
+    })
+    this.ledItemWWRef$.update('e2', {
+      20: 1,
+      21: 1,
+    })
+    this.StateItemRef$.update('state-table', {
+      e0: 1,
+      e1: 1,
+      e2: 1,
+      e3: 0,
+      e4: 0,
+      5: 0,
+    })
+
+  }
+
+
+  // Total power and fan power control
 
   PowerOff(modeItem: ModeItem) {
     this.ledItemRedRef$.update('e0', {
