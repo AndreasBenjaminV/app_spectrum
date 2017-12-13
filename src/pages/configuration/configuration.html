@@ -6,8 +6,12 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding style="background:url(assets/img/RnCaQ3H4TP6mqWu4G2QD_background_2.jpg) no-repeat center;background-size:cover;"
-  id="page3">
+<ion-content>
+
+<video poster="">
+  
+
+</video>
 
   <h3 id="home-heading5" style="color:#FFFFFF;text-align:center;">
     Timer
@@ -22,13 +26,15 @@
             <ion-icon range-right name="ios-clock-outline"></ion-icon>
           </ion-range>
         </ion-item>
-          <button ion-button block (click)="addTimerItem(timerItem)">Set</button>
+          <button ion-button block (click)="editTimerItem(timerItem)">Set</button>
       </ion-col>
       <ion-col col-4>
         <ion-item *ngFor="let item of timerListRef$ | async">
-          <h2>On: {{item.itemHourOn}}</h2>
-          <h3>Off: {{item.itemHourOn}}</h3>
+          <h3>On: {{timerItem.itemHourOn}}</h3>
         </ion-item>
+        <ion-item *ngFor="let item of timerListRef$ | async">
+            <h3>Off: {{24-timerItem.itemHourOn}}</h3>
+          </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -39,30 +45,48 @@
   <ion-grid>
     <ion-row>
       <ion-col col-6>
-        <button ion-button color="danger" full>On</button>
+        <button ion-button color="danger" full (click)="PowerOn()">On</button>
       </ion-col>
       <ion-col col-6>
-        <button ion-button color="dark" full>Off</button>
+        <button ion-button color="dark" full (click)="PowerOff()">Off</button>
       </ion-col>
     </ion-row>
   </ion-grid>
-
+  <h1 id="home-heading5" style="color:#FFFFFF;text-align:center;">
+      Ventiladores
+    </h1>
+  <ion-grid>
+    <ion-row>
+    <ion-col col-3>
+      <button ion-button color="danger" full (click)="Fan1On()">Ventilador 1:  On</button>
+    </ion-col>
+    <ion-col col-3>
+      <button ion-button color="dark" full (click)="Fan1Off()">Ventilador 1:  Off</button>
+    </ion-col>
+    <ion-col col-3>
+        <button ion-button color="danger" full (click)="Fan2On()">Ventilador 2:  On</button>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button color="dark" full (click)="Fan2Off()">Ventilador 2:   Off</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <h3 id="home-heading7" style="color:#FFFFFF;text-align:center;">
     Modos
   </h3>
   <ion-grid>
     <ion-row>
       <ion-col col-3>
-        <button ion-button color="secondary" full>Seeding</button>
+        <button ion-button color="light" full (click)="editModeClone()">Clone</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button color="light" full>Clone</button>
+        <button ion-button full (click)="editModeVegeta()">Vegetative </button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button full>Vegetative</button>
+        <button ion-button color="danger" full (click)="editModeFlowering()">Flowering</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button color="danger" full>Flowering</button>
+        <button ion-button color="secondary" full (click)="editModeBloom()">Bloom</button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -75,14 +99,14 @@
       <ion-row>
         <ion-col col-11>
           <ion-item>
-            <ion-range min="1" max="8" step="1" snaps="true" pin="true" [(ngModel)]="warmth1" color="danger">
+            <ion-range min="0" max="6" step="1" snaps="true" pin="true" color="danger" [(ngModel)]="ledItemRed.itemNumber">
               <ion-icon range-left small color="danger" name="md-bulb"></ion-icon>
               <ion-icon range-right color="danger" name="red-bulb"></ion-icon>
             </ion-range>
           </ion-item>
         </ion-col>
         <ion-col col-1>
-          <button ion-button color="danger" full>SET</button>
+          <button ion-button color="danger" full (click)="editModeRed(ledItemRed)">SET</button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -91,14 +115,14 @@
       <ion-row>
         <ion-col col-11>
           <ion-item>
-            <ion-range min="1" max="5" step="1" snaps="true" pin="true" [(ngModel)]="warmth2" color="primary">
+            <ion-range min="0" max="4" step="1" snaps="true" pin="true" color="primary" [(ngModel)]="ledItemBlue.itemNumber">
               <ion-icon range-left small color="primary" name="md-bulb"></ion-icon>
               <ion-icon range-right color="primary" name="blue-bulb"></ion-icon>
             </ion-range>
           </ion-item>
         </ion-col>
         <ion-col col-1>
-          <button ion-button color="danger" full>SET</button>
+          <button ion-button color="danger" full (click)="editModeBlue(ledItemBlue)">SET</button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -107,14 +131,14 @@
       <ion-row>
         <ion-col col-11>
           <ion-item>
-            <ion-range min="1" max="3" step="1" snaps="true" pin="true" [(ngModel)]="warmth3">
+            <ion-range min="0" max="2" step="1" snaps="true" pin="true" [(ngModel)]="ledItemWW.itemNumber">
               <ion-icon range-left small color="" name="md-bulb"></ion-icon>
               <ion-icon range-right color="" name="white-bulb"></ion-icon>
             </ion-range>
           </ion-item>
         </ion-col>
         <ion-col col-1>
-          <button ion-button color="danger" full>SET</button>
+          <button ion-button color="danger" full (click)="editModeWW(ledItemWW)">SET</button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -130,7 +154,7 @@
               <ion-label>
                 Encendido
               </ion-label>
-              <ion-toggle color="dark" checked="true"></ion-toggle>
+              <ion-toggle color="dark" checked="true "></ion-toggle>
             </ion-item>
           </form>
         </ion-col>
@@ -143,7 +167,7 @@
               <ion-label>
                 Encendido
               </ion-label>
-              <ion-toggle color="dark" checked="true"></ion-toggle>
+              <ion-toggle color="dark" checked="false" (ionChange)="editModeUv(ledItemUv)"></ion-toggle>
             </ion-item>
           </form>
         </ion-col>
@@ -162,7 +186,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <button ion-button color="danger" full>Iniciar tiempo de cultivo</button>
   </ion-list>
 
 

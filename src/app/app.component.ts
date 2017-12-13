@@ -12,7 +12,7 @@ import { ConfigurationPage } from '../pages/configuration/configuration';
 })
 export class MyApp {
   
-  rootPage:any = ConfigurationPage;
+  rootPage:any = TabsControllerPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
