@@ -387,6 +387,8 @@ export class ConfigurationPage {
     this.FanItemRef$.update('e4', {
     13: 0,
     })
+    this.StateItemRef$.update('state-table', {
+      e3:0})
   }
 
 
